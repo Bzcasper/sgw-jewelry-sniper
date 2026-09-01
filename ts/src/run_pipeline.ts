@@ -4,9 +4,9 @@
 
 import { itemListingBody, api } from "./buyerapi.js";
 import { insertWatched } from "./db.js";
-import { shippingGate } from "./shipping.js";
-import { demographicsBonus } from "./scoring.js";
 import { closedMedian } from "./histogram.js";
+import { demographicsBonus } from "./scoring.js";
+import { shippingGate } from "./shipping.js";
 
 async function main() {
   const maxArg = Number(process.env.MAX_BID || 30);
