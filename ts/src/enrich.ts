@@ -1,10 +1,13 @@
 // Bulk enrich watched_auctions via GetItemsById 50/batch + parse description HTML
-import fs from "fs";
-
 import { getItemsByIds } from "./buyerapi.js";
+import db from "./db.js";
 
-function parseGold(desc: string) {
-  // naive: look for 10K, 14K, 925, "g" weight
+function parseGold(desc: string): {
+  weightG: number | null;
+  has925: boolean;
+  has10K: boolean;
+  has14K: boolean;
+} {
   const m = desc.match(/(\d+\.?\d*)\s*g\b/i);
   return {
     weightG: m ? Number(m[1]) : null,
@@ -14,18 +17,29 @@ function parseGold(desc: string) {
   };
 }
 
-export async function enrich(ids: number[]) {
+export async function enrich(ids: number[]): Promise<void> {
   for (let i = 0; i < ids.length; i += 50) {
     const batch = ids.slice(i, i + 50);
-    const rows = await getItemsByIds(batch);
+    const rows: any[] = await getItemsByIds(batch);
+    const upd = db.prepare(
+      `UPDATE watched_auctions SET categoryParentList=@cpl, catFullName=COALESCE(@catFull,''), lastPolledAt=@now WHERE itemId=@itemId`,
+    );
     for (const r of rows) {
-      const g = parseGold(r.description || "");
+      const g = parseGold(r.description ?? "");
       console.log(r.itemId, g, r.categoryParentList);
-      fs.appendFileSync(
-        "data/items.ndjson",
-        JSON.stringify({ itemId: r.itemId, enrich: g }) + "\n",
-      );
+      upd.run({
+        itemId: r.itemId,
+        cpl: r.categoryParentList ?? null,
+        catFull: r.catFullName ?? null,
+        now: new Date().toISOString(),
+      });
     }
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise((res) => setTimeout(res, 600));
   }
+}
+
+// CLI: npx tsx src/enrich.ts 275585046 275772810
+if (import.meta.url.endsWith("enrich.ts")) {
+  const ids = process.argv.slice(2).map(Number).filter(Boolean);
+  if (ids.length) enrich(ids).catch(console.error);
 }

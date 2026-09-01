@@ -13,6 +13,8 @@ module.exports = {
   env: { node: true, es2022: true },
   rules: {
     "no-console": "off",
+    "no-empty": "off",
+    "no-constant-condition": "off",
     "unused-imports/no-unused-imports": "error",
     "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
     "@typescript-eslint/explicit-function-return-type": "off",

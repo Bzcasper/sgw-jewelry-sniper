@@ -1,4 +1,5 @@
 import "dotenv/config";
+
 export const cfg = {
   base: "https://buyerapi.shopgoodwill.com/api/",
   bearer: process.env.BEARER || "",
@@ -12,9 +13,11 @@ export const cfg = {
   censusKey: process.env.CENSUS_API_KEY || "DEMO_KEY",
   dbUrl: process.env.DATABASE_URL || "sqlite:./data/sgw_jewelry.db",
   items: process.env.ITEMS || "275585046:30",
-  jewelryCatIds: (process.env.JEWELRY_CAT_IDS || "87").split(","),
-  jewelrySubcats: (process.env.JEWELRY_SUBCATS || "88,2240").split(","),
+  jewelryCatIds: (process.env.JEWELRY_CAT_IDS || "87").split(",").map((s) => s.trim()),
+  jewelrySubcats: (process.env.JEWELRY_SUBCATS || "88,2240").split(",").map((s) => s.trim()),
+  censusCacheDays: Number(process.env.CENSUS_GEO_CACHE_DAYS || 30),
 };
+
 export const headers = {
   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0",
   Accept: "application/json",
