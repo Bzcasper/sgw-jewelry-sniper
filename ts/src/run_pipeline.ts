@@ -78,7 +78,7 @@ async function main(): Promise<void> {
       demo,
       peer: { maxP: 0.3, threat: "low" }, // real: aggregatePeerThreat from bidder expectations
       numBids: it.numBids ?? 0,
-      views: (it as any).views ?? 0,
+      views: it.views ?? 0,
     });
 
     if (!flip.shouldBid) {
