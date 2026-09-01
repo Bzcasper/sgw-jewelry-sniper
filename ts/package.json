@@ -9,9 +9,47 @@
     "dotenv": "^17.4.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.2",
+    "eslint-import-resolver-typescript": "3.10.1",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-unused-imports": "3.2.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
+    "prettier": "3.9.6",
     "tsx": "^4.0.0",
     "typescript": "^5.5.0"
+  },
+  "scripts": {
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"*.ts\" \"tests/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"*.ts\" \"tests/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx tests/catalog.test.ts",
+    "prepare": "cd .. && husky install ts/.husky 2>/dev/null || husky init 2>/dev/null || true"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.md": [
+      "prettier --write"
+    ],
+    "*.sql": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }

@@ -49,13 +49,13 @@
 
 ## Ownership Matrix
 
-| Milestone | Lead | Reviewer |
-|---|---|---|
-| M1 DB+Census | Census Agent | Scanner |
-| M2 Scanner | Scanner | Census |
-| M3 Poller | Poller | Executor |
-| M4 Executor | Executor | Poller |
-| M5 Loop | QA | All |
+| Milestone    | Lead         | Reviewer |
+| ------------ | ------------ | -------- |
+| M1 DB+Census | Census Agent | Scanner  |
+| M2 Scanner   | Scanner      | Census   |
+| M3 Poller    | Poller       | Executor |
+| M4 Executor  | Executor     | Poller   |
+| M5 Loop      | QA           | All      |
 
 ## Escalation
 

@@ -17,20 +17,20 @@ BEARER=... ITEMS=275585046:30,275772810:50 make snipe-ts  # or snipe-rs
 
 ## Docs for AI
 
-| File | For |
-|------|-----|
-| `SPEC-JEWELRY.md` | Product/arch/algo, 7 tables, scoring `richTownScore` + bidder `sigmoid` |
-| `PLAN.md` | 5 milestones, 14d, dependencies |
-| `PROGRESS.md` | 45 checkboxes `[x]` — update per PR |
-| `AGENTS.md` | 5 agents (Scanner, Census, Poller, Executor, QA) handoffs via NDJSON/SQLite |
-| `RULES.md` | 20 guardrails (STRING booleans, 0.6s throttle, 30% ship gate, 5 cap) |
-| `DB-SPEC.md` + `schema.sql` | 8 tables validated `sqlite3 :memory:` |
-| `API-CONTRACTS.md` | buyerapi 257 + Census `B02001_002E/B19013_001E` |
-| `AGENT_INSTRUCTIONS.md` + `prompts/system.md` + `.opencode/config.json` | vibe prompts for opencode/claude |
-| `ts/src/*` | Scanner scaffolding: `buyerapi.ts` handles quirk, `catalog.ts` shards, `census.ts` ACS, `scoring.ts` bonus, `db.ts` NDJSON |
-| `rs/src/*` | Executor: `clock.rs` offset, `buyerapi.rs` PlaceBid, `main.rs` 1–5 spawns |
-| `scripts/bootstrap.sh` | One-shot M1 |
-| `Makefile` + `docker-compose.yml` + `Dockerfile.*` | `make setup && docker compose up` |
+| File                                                                    | For                                                                                                                        |
+| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `SPEC-JEWELRY.md`                                                       | Product/arch/algo, 7 tables, scoring `richTownScore` + bidder `sigmoid`                                                    |
+| `PLAN.md`                                                               | 5 milestones, 14d, dependencies                                                                                            |
+| `PROGRESS.md`                                                           | 45 checkboxes `[x]` — update per PR                                                                                        |
+| `AGENTS.md`                                                             | 5 agents (Scanner, Census, Poller, Executor, QA) handoffs via NDJSON/SQLite                                                |
+| `RULES.md`                                                              | 20 guardrails (STRING booleans, 0.6s throttle, 30% ship gate, 5 cap)                                                       |
+| `DB-SPEC.md` + `schema.sql`                                             | 8 tables validated `sqlite3 :memory:`                                                                                      |
+| `API-CONTRACTS.md`                                                      | buyerapi 257 + Census `B02001_002E/B19013_001E`                                                                            |
+| `AGENT_INSTRUCTIONS.md` + `prompts/system.md` + `.opencode/config.json` | vibe prompts for opencode/claude                                                                                           |
+| `ts/src/*`                                                              | Scanner scaffolding: `buyerapi.ts` handles quirk, `catalog.ts` shards, `census.ts` ACS, `scoring.ts` bonus, `db.ts` NDJSON |
+| `rs/src/*`                                                              | Executor: `clock.rs` offset, `buyerapi.rs` PlaceBid, `main.rs` 1–5 spawns                                                  |
+| `scripts/bootstrap.sh`                                                  | One-shot M1                                                                                                                |
+| `Makefile` + `docker-compose.yml` + `Dockerfile.*`                      | `make setup && docker compose up`                                                                                          |
 
 ## References (frx-isolated reverse)
 

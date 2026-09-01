@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+npx --prefix ts lint-staged 2>&1 | head -n 50
+if command -v cargo >/dev/null 2>&1; then cargo fmt --manifest-path rs/Cargo.toml -- --check || (echo "run cargo fmt"; exit 1); cargo clippy --manifest-path rs/Cargo.toml -- -D warnings || exit 1; fi
+if command -v gitleaks >/dev/null 2>&1; then gitleaks protect --staged --verbose; fi

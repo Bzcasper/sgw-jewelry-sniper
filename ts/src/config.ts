@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 export const cfg = {
   base: "https://buyerapi.shopgoodwill.com/api/",
   bearer: process.env.BEARER || "",
@@ -17,6 +17,8 @@ export const cfg = {
 };
 export const headers = {
   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:153.0) Gecko/20100101 Firefox/153.0",
-  "Accept": "application/json", "Content-Type": "application/json",
-  "Origin": "https://shopgoodwill.com", "Referer": "https://shopgoodwill.com/",
+  Accept: "application/json",
+  "Content-Type": "application/json",
+  Origin: "https://shopgoodwill.com",
+  Referer: "https://shopgoodwill.com/",
 };

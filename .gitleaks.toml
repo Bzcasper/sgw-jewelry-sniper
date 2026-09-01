@@ -1,0 +1,13 @@
+title = "sgw gitleaks"
+[[rules]]
+  id = "bearer-token"
+  description = "Bearer token"
+  regex = '''Bearer\s+[A-Za-z0-9\-_\.=]+'''
+  tags = ["secret"]
+[[rules]]
+  id = "census-key"
+  description = "Census API key"
+  regex = '''CENSUS_API_KEY\s*=\s*.+'''
+  tags = ["secret"]
+[allowlist]
+  paths = ['''\\.env\\.example$''']

@@ -5,6 +5,7 @@
 ### Search
 
 **POST Search/ItemListing**
+
 - Req: JSON with **STRING booleans** (`"true"/"false"`) — `isSize:false, isWeddingCatagory:"false", isMultipleCategoryIds:false, layout:"", searchText:"gold", selectedCategoryIds:"87", selectedSellerIds:"5", lowPrice:"10", highPrice:"5000", searchBuyNowOnly:"", searchPickupOnly:"false", searchOneCentShippingOnly:"false", searchDescriptions:"false"/"true", searchClosedAuctions:"false", closedAuctionEndingDate:"9/1/2026", closedAuctionDaysBack:"7", searchCanadaShipping:"false", searchInternationalShippingOnly:"false", sortColumn:"1", page:"1", pageSize:"40", sortDescending:"false", savedSearchId:0, useBuyerPrefs:"true", categoryLevel:1, categoryId:0`
 - Resp: `{searchResults:{items:[{itemId, sellerId, categoryId, title, currentPrice, minimumBid, numBids, startTime, endTime, imageURL, sellerId, listingType, catFullName}], itemCount:631233}, maxTotalRecords:10000, categoryListModel, sellers:[]}`
 - Notes: shard by `selectedCategoryIds`/`selectedSellerIds` to bypass `10k`.
@@ -13,8 +14,7 @@
 **GET Search/GetActiveLocation** → `[{sellerId, searchFilterName:"IN, Indianapolis", pickupCity}]` 163 rows
 **GET Category/GetAllCategoryPageList** → jewelry tree; **GET Search/GetCategoryDropdown?categoryId=88** → subcats
 **POST Search/GetCategory** → `500` if STRING boolean mismatch; use `"true"` strings
-**POST ItemDetail/CalculateShipping {itemId,country,province,zipCode,quantity,clientIP}` → HTML `FedEx $11.70 + $2.00` or `RATE.LOCATION.NOSERVICE`
-**GET ItemDetail/GetItemDetailModelByItemId/{id}** → `{currentPrice, endTime, bidIncrement, reserve, quantity, imageUrlString, categoryParentList}`
+**POST ItemDetail/CalculateShipping {itemId,country,province,zipCode,quantity,clientIP}`→ HTML`FedEx $11.70 + $2.00`or`RATE.LOCATION.NOSERVICE`**GET ItemDetail/GetItemDetailModelByItemId/{id}** →`{currentPrice, endTime, bidIncrement, reserve, quantity, imageUrlString, categoryParentList}`
 
 ### Bid
 
