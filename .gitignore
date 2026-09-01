@@ -1,0 +1,14 @@
+.env
+data/*.db
+data/*.ndjson
+data/*.json
+node_modules/
+ts/node_modules/
+rs/target/
+dist/
+*.log
+/tmp/sgw_chunks/
+profile-*
+isolated-home/
+.firefox-reverse/
+.opencode/cache/

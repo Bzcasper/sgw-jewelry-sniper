@@ -1,0 +1,24 @@
+services:
+  scanner:
+    build: { context: ., dockerfile: Dockerfile.ts }
+    env_file: .env
+    volumes: ["./data:/app/data", "./ts:/app/ts:ro"]
+    command: ["npx","tsx","ts/src/catalog.ts","--jewelry"]
+    restart: unless-stopped
+  poller:
+    build: { context: ., dockerfile: Dockerfile.ts }
+    env_file: .env
+    volumes: ["./data:/app/data"]
+    command: ["npx","tsx","ts/src/poller.ts","--last","10m"]
+  sniper:
+    build: { context: ., dockerfile: Dockerfile.rs }
+    env_file: .env
+    volumes: ["./data:/app/data"]
+    command: ["/app/sgw-sniper"]
+    deploy: { resources: { limits: { cpus: '1', memory: 512M } } }
+  db:
+    image: postgres:16-alpine
+    environment: { POSTGRES_DB: sgw, POSTGRES_USER: sgw, POSTGRES_PASSWORD: sgw }
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+volumes: { pgdata: {} }

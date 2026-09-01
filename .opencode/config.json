@@ -1,0 +1,6 @@
+{
+  "instructions": ["AGENT_INSTRUCTIONS.md", "prompts/system.md"],
+  "skills": ["agents-sdk"],
+  "rules": ["RULES.md"],
+  "todos": ["PROGRESS.md"]
+}
