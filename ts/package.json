@@ -24,7 +24,7 @@
     "lint-staged": "15.5.2",
     "prettier": "3.9.6",
     "tsx": "^4.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^7.0.2"
   },
   "scripts": {
     "lint": "eslint src --ext .ts",
